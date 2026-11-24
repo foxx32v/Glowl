@@ -6,12 +6,24 @@ import (
 )
 
 type Urls struct {
-	LLM         string
-	ASR         string
-	TTS         string
-	LLMGenerate string
-	LLMChat     string
-	TTSProcess  string
+	LLM              string
+	ASR              string
+	TTS              string
+	LLMGenerate      string
+	LLMChat          string
+	TTSProcess       string
+	LLMHttps         string
+	ASRHttps         string
+	TTSHttps         string
+	LLMGenerateHttps string
+	LLMChatHttps     string
+	TTSProcessHttps  string
+	LLMWs            string
+	ASRWs            string
+	TTSWs            string
+	LLMGenerateWs    string
+	LLMChatWs        string
+	TTSProcessWs     string
 }
 
 type fetchResponse struct {
@@ -25,48 +37,28 @@ type fetchOption struct {
 	Body   entities.ApiBody
 }
 
+type endpointOptions[T any] struct {
+	GET     T
+	POST    T
+	PUT     T
+	PATCH   T
+	DELETE  T
+	OPTIONS T
+	NIL     T
+}
+type schemaOptions[T any] struct {
+	LLM         endpointOptions[T]
+	ASR         endpointOptions[T]
+	TTS         endpointOptions[T]
+	LLMGenerate endpointOptions[T]
+	LLMChat     endpointOptions[T]
+	TTSProcess  endpointOptions[T]
+}
+
 type fetchType[T any] struct {
-	LLM_GET     T
-	LLM_POST    T
-	LLM_PUT     T
-	LLM_PATCH   T
-	LLM_DELETE  T
-	LLM_OPTIONS T
-
-	ASR_GET     T
-	ASR_POST    T
-	ASR_PUT     T
-	ASR_PATCH   T
-	ASR_DELETE  T
-	ASR_OPTIONS T
-
-	TTS_GET     T
-	TTS_POST    T
-	TTS_PUT     T
-	TTS_PATCH   T
-	TTS_DELETE  T
-	TTS_OPTIONS T
-
-	LLM_GENERATE_GET     T
-	LLM_GENERATE_POST    T
-	LLM_GENERATE_PUT     T
-	LLM_GENERATE_PATCH   T
-	LLM_GENERATE_DELETE  T
-	LLM_GENERATE_OPTIONS T
-
-	LLM_CHAT_GET     T
-	LLM_CHAT_POST    T
-	LLM_CHAT_PUT     T
-	LLM_CHAT_PATCH   T
-	LLM_CHAT_DELETE  T
-	LLM_CHAT_OPTIONS T
-
-	TTS_PROCESS_GET     T
-	TTS_PROCESS_POST    T
-	TTS_PROCESS_PUT     T
-	TTS_PROCESS_PATCH   T
-	TTS_PROCESS_DELETE  T
-	TTS_PROCESS_OPTIONS T
+	HTTP  schemaOptions[T]
+	HTTPS schemaOptions[T]
+	WS    schemaOptions[T]
 }
 
 type ServiceRes = fetchResponse

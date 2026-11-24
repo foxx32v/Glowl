@@ -8,6 +8,7 @@ func NewApiMethods() apiMethods {
 		PATCH:   methodPatch,
 		OPTIONS: methodOptions,
 		DELETE:  methodDelete,
+		NIL:     methodNil,
 	}
 }
 
@@ -22,5 +23,13 @@ func NewApiPort() apiPort {
 		Llm: portLlm,
 		Tts: portTts,
 		Asr: portAsr,
+	}
+}
+
+func NewApiProtocol() apiProtocol {
+	return apiProtocol{
+		Http:  protocolHTTP,
+		Https: protocolHTTPS,
+		Ws:    protocolWS,
 	}
 }

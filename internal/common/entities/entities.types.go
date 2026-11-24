@@ -6,3 +6,4 @@ type ApiMethod string
 type ApiUrl string
 type ApiPort int
 type ApiBody json.RawMessage
+type ApiProtocol string

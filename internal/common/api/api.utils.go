@@ -3,16 +3,19 @@ package api
 import (
 	"Glowl/internal/common/entities"
 	"bytes"
+	"context"
 	"io"
 	"net/http"
+
+	"github.com/coder/websocket"
 )
 
-func createUrl(url entities.ApiUrl, port *entities.ApiPort) string {
+func createUrl(protocol entities.ApiProtocol, url entities.ApiUrl, port *entities.ApiPort) string {
 	var res string
 	if port == nil {
-		res = "http://" + string(url)
+		res = string(protocol) + "://" + string(url)
 	} else {
-		res = "http://" + string(url) + ":" + string(*port)
+		res = string(protocol) + "://" + string(url) + ":" + string(*port)
 	}
 	return res
 }
@@ -35,4 +38,13 @@ func fetch(option fetchOption) (io.ReadCloser, error) {
 		return nil, err
 	}
 	return res.Body, nil
+}
+
+func wsConnect(ctx context.Context, url string) (*websocket.Conn, error) {
+	c, _, err := websocket.Dial(ctx, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	c.SetReadLimit(1 << 20)
+	return c, nil
 }

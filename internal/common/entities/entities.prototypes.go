@@ -7,6 +7,7 @@ const (
 	methodPatch   ApiMethod = "PATCH"
 	methodOptions ApiMethod = "OPTIONS"
 	methodDelete  ApiMethod = "DELETE"
+	methodNil     ApiMethod = ""
 )
 
 const (
@@ -17,4 +18,10 @@ const (
 	portTts ApiPort = 9898
 	portAsr ApiPort = 2700
 	portLlm ApiPort = 11434
+)
+
+const (
+	protocolHTTP  ApiProtocol = "http"
+	protocolHTTPS ApiProtocol = "https"
+	protocolWS    ApiProtocol = "ws"
 )

@@ -19,7 +19,7 @@ func ParseApiMethod(str string) (ApiMethod, error) {
 	case string(methodOptions):
 		return methodOptions, nil
 	default:
-		return "", fmt.Errorf("Error HTTP method")
+		return "", fmt.Errorf("Error parse API method")
 	}
 }
 
@@ -28,7 +28,7 @@ func ParseApiUrl(str string) (ApiUrl, error) {
 	case string(urlLocalhost):
 		return urlLocalhost, nil
 	default:
-		return "", fmt.Errorf("")
+		return "", fmt.Errorf("Error Parse API url")
 	}
 }
 
@@ -41,6 +41,19 @@ func ParseApiPort(port int) (ApiPort, error) {
 	case int(portLlm):
 		return portLlm, nil
 	default:
-		return 0, fmt.Errorf("")
+		return 0, fmt.Errorf("Error parse API port")
+	}
+}
+
+func ParseApiProtocol(str string) (ApiProtocol, error) {
+	switch str {
+	case string(protocolHTTP):
+		return protocolHTTP, nil
+	case string(protocolHTTPS):
+		return protocolHTTPS, nil
+	case string(protocolWS):
+		return protocolWS, nil
+	default:
+		return "", fmt.Errorf("Error parse API protocol")
 	}
 }
