@@ -3,10 +3,11 @@ package api
 import "Glowl/internal/common/entities"
 
 func NewHttpService() *Service {
-	return (&Service{}).constructor()
+	return (&Service{}).constructorService()
 }
 
-func (s *Service) constructor() *Service {
+func (s *Service) constructorService() *Service {
+	s.opts = optionFactory()
 	return s
 }
 

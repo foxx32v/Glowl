@@ -15,9 +15,9 @@ const (
 )
 
 const (
-	portTts ApiPort = 9898
-	portAsr ApiPort = 2700
-	portLlm ApiPort = 11434
+	portTts ApiPort = "9898"
+	portAsr ApiPort = "2700"
+	portLlm ApiPort = "11434"
 )
 
 const (

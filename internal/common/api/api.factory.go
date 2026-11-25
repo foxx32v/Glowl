@@ -165,3 +165,14 @@ func optionFactory() fetchType[fetchOption] {
 		},
 	}
 }
+
+func serverFactory() (*servers, error) {
+	url := "127.0.0.1:8000"
+	tcpLocalhost, err := constructorHttpServer("tcp", url)
+	if err != nil {
+		return nil, err
+	}
+	return &servers{
+		TcpLocalhost: tcpLocalhost,
+	}, nil
+}

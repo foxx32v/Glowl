@@ -3,6 +3,8 @@ package api
 import (
 	"Glowl/internal/common/entities"
 	"io"
+	"net"
+	"net/http"
 )
 
 type Urls struct {
@@ -64,4 +66,14 @@ type fetchType[T any] struct {
 type ServiceRes = fetchResponse
 type Service struct {
 	opts fetchType[fetchOption]
+}
+
+type server struct {
+	mux  *http.ServeMux
+	adr  net.Listener
+	http *http.Server
+}
+
+type servers struct {
+	TcpLocalhost *server
 }

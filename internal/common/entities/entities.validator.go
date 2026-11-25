@@ -32,16 +32,16 @@ func ParseApiUrl(str string) (ApiUrl, error) {
 	}
 }
 
-func ParseApiPort(port int) (ApiPort, error) {
+func ParseApiPort(port string) (ApiPort, error) {
 	switch port {
-	case int(portTts):
+	case string(portTts):
 		return portTts, nil
-	case int(portAsr):
+	case string(portAsr):
 		return portAsr, nil
-	case int(portLlm):
+	case string(portLlm):
 		return portLlm, nil
 	default:
-		return 0, fmt.Errorf("Error parse API port")
+		return "", fmt.Errorf("Error parse API port")
 	}
 }
 

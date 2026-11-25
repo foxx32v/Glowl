@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"context"
 	"io"
+	"net"
 	"net/http"
 
 	"github.com/coder/websocket"
@@ -47,4 +48,33 @@ func wsConnect(ctx context.Context, url string) (*websocket.Conn, error) {
 	}
 	c.SetReadLimit(1 << 20)
 	return c, nil
+}
+
+func createHttpServer(network string, address string) (*server, error) {
+	mux := http.NewServeMux()
+	adr, err := net.Listen(network, address)
+	if err != nil {
+		return nil, err
+	}
+	handler := &http.Server{Handler: mux}
+	return &server{
+		mux:  mux,
+		adr:  adr,
+		http: handler,
+	}, nil
+}
+
+func NewServer(network string, address string) (*server, error) {
+	server, err := constructorHttpServer(network, address)
+	if err != nil {
+		return nil, err
+	}
+	service := NewHttpService()
+	RegisterRoutes(server.mux, service)
+	RegisterWsRoutes(server.mux, service)
+	return server, nil
+}
+
+func (s *server) Start() error {
+	return s.http.Serve(s.adr)
 }
