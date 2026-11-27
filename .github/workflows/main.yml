@@ -4,7 +4,7 @@
     token: ${{ secrets.BOT_TOKEN }}
     to: ${{ secrets.TELEGRAM_CHAT_ID }}
     message: |
-      [Egger-bot]:
+      [Egger-bot]
       Опять ${{ github.actor }} закаммитил какую-то хрень
 
       Репозиторий: ${{ github.repository }}
