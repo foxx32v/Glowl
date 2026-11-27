@@ -1,0 +1,15 @@
+- name: Send Telegram Message
+  uses: cbrgm/telegram-github-action@v1
+  with:
+    token: ${{ secrets.BOT_TOKEN }}
+    to: ${{ secrets.TELEGRAM_CHAT_ID }}
+    message: |
+      [Egger-bot]:
+      Опять ${{ github.actor }} закаммитил какую-то хрень
+
+      Репозиторий: ${{ github.repository }}
+      Ветка: ${{ github.ref_name }}
+      Сообщение: ${{ github.event.head_commit.message }}
+      Автор коммита: ${{ github.event.head_commit.author.name }}
+      SHA: ${{ github.sha }}
+      Ссылка на коммит: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}

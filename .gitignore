@@ -2,6 +2,7 @@
 /glowl.exe
 /cmd/glowl/glowl
 /cmd/glowl/glowl.exe
+
 *.exe
 *.exe~
 *.dll
@@ -25,7 +26,7 @@ coverage.html
 *.cover
 *.coverprofile
 
-.vscode/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -40,7 +41,6 @@ coverage.html
 *.swo
 *~
 .netrwhist
-
 \#*\#
 .\#*
 
@@ -98,4 +98,9 @@ recordings/
 /testdata/tmp/
 *.snap
 
-.vscode/
+node_modules/
+/.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
